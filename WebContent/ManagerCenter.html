@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/managercenterstyle.css">
+<link rel="shortcut icon" href="images/logo.ico" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.css">
+<script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui-1.10.3.custom.js"></script>
+<script type="text/javascript">
+	var headtime;
+	var datetime;
+	$(document).ready(function(){
+		init();
+	});
+	
+	function init(){
+		$("#managercenter_div_center_right_inside_pad_datepicker").datepicker();
+		$("#managercenter_div_center_right_inside_pad_add").button();
+		$("#managercenter_div_center_right_inside_pad_see").button();
+		headtime=$("#managercenter_div_head_time span");
+		setTime();
+	}
+	function setTime(){
+		headtime.text(formatDateTime());
+		setInterval("setTime()",1000*60);
+	}
+	function formatDateTime(){
+		datetime=new Date();
+		return datetime.getFullYear()+"年"+(datetime.getMonth()+1)+"月"+datetime.getDate()+"日"+"	"+datetime.getHours()+":"+datetime.getMinutes();
+	}
+</script>
+<title>任务管家</title>
+</head>
+<body>
+		<div id="managercenter_superdiv">
+				<div id="managercenter_superdiv_inside">
+						<div id="managercenter_div_head">
+							<div id="managercenter_div_head_img">
+									<img alt="" src="images/icon_add.png">
+							</div>
+							<div id="managercenter_div_head_title">
+									<span>任务管家</span>
+							</div>
+							<div id="managercenter_div_head_time">
+									<span>2013年8月6日  14:43</span>
+							</div>
+						</div>
+						<div id="managercenter_div_center">
+								<div id="managercenter_div_center_left">
+										<div class="managercenter_div_center_left_item">
+												<span>我的任务</span>
+										</div>
+										<div class="managercenter_div_center_left_item">
+												<span>编辑我的个人信息</span>
+										</div>
+										<div class="managercenter_div_center_left_item">
+												<span>安全退出</span>
+										</div>
+								</div>
+								<div id="managercenter_div_center_right">
+										<div id="managercenter_div_center_right_inside">
+												<div id="managercenter_div_center_right_inside_pad">
+														<div id="managercenter_div_center_right_inside_pad_title">
+															<span>我的计划任务：</span>
+														</div>
+														<div id="managercenter_div_center_right_inside_pad_content">
+															<textarea id="managercenter_div_center_right_inside_pad_textarea">
+															</textarea>
+														</div>
+														<div id="managercenter_div_center_right_inside_pad_select">
+															<span>选择日期添加或查看任务：</span>
+															<input type="text" id="managercenter_div_center_right_inside_pad_datepicker">
+														</div>
+														<div id="managercenter_div_center_right_inside_pad_handle">
+															<input type="button" value="添加" id="managercenter_div_center_right_inside_pad_add" class="managercenter_div_center_right_inside_pad_button">
+															<input type="button" value="查看" id="managercenter_div_center_right_inside_pad_see" class="managercenter_div_center_right_inside_pad_button">
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+				</div>
+		</div>
+</body>
+</html>

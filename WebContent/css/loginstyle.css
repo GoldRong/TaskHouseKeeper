@@ -1,0 +1,109 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	width: 100%;
+	height: auto;
+	background-color: white;
+}
+#login_superdiv{
+	margin-top:60px;
+	width: 100%;
+	height: 350px;
+	background-color: #4388cc;
+}
+#login_inside_div{
+	margin: 0 auto;
+	width: 1000px;
+	height: 350px;
+}
+#login_inside_div_left{
+	float: left;
+	width: 500px;
+	height: 350px;
+}
+#login_inside_div_left_logo{
+	width: 450px;
+	height: 350px;
+	margin-left: 25px;
+}
+#login_inside_div_left_logo img{
+	width: 450px;
+	height: 350px;
+}
+#login_inside_div_right{
+	float: right;
+	width: 500px;
+	height: 350px;
+}
+#login_inside_div_right_pad{
+	margin-left:80px;
+	margin-top:45px;
+	width: 300px;
+	height: 260px;
+	background-color: #cccccc;
+}
+
+#login_inside_div_right_pad_inside{
+	position:relative;
+	top:10px;
+	width: 250px;
+	height: 240px;
+	margin: 0 auto;
+}
+
+#login_inside_div_head{
+	width: 300px;
+	height:30px;
+}
+
+#login_inside_div_head span{
+	position: relative;
+	top: 5px;
+	font-weight: bolder;
+	font-size: 18px;
+	color: white;
+}
+
+.login_inside_div_title{
+	margin-top:10px;
+	width: 300px;
+	height: 20px;
+}
+
+.login_inside_div_title span{
+	font-weight: bolder;
+	font-size: 14px;
+	color: white;
+}
+.login_inside_div_input{
+	width: 300px;
+	height: 28px;
+}
+.login_inside_div_input input{
+	width: 240px;
+	height:26px;
+	border-style: none;
+	padding-left: 5px;
+}
+.login_inside_div_input_button{
+	margin-top:20px;
+	width: 300px;
+	height: 35px;
+}
+#login_inside_div_input_submit{
+	width: 245px;
+	height: 30px;
+	border-style: none;
+	background-color: #ffb00e;
+	color: white;
+	font-size: 14px;
+	font-weight: bolder;
+	cursor: pointer;
+}
+#login_inside_div_input_submit:HOVER{
+	background-color: #ffc54e;
+}
+

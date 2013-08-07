@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"  href="css/loginstyle.css">
+<link rel="shortcut icon" href="images/logo.ico" />
+<script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+		var uname;
+		var upass;
+		
+		$(document).ready(function(){
+			$("#login_inside_div_input_submit").click(function(){
+				location.href = "ManagerCenter.html";
+			});
+		});
+		$()
+</script>
+<title>任务管家</title>
+</head>
+<body>
+		<div id="login_superdiv">
+			<div id="login_inside_div">
+				<div id="login_inside_div_left">
+					<div id="login_inside_div_left_logo">
+							<img alt="任务管家" src="images/login_logo.jpg">
+					</div>
+				</div>
+				<div id="login_inside_div_right">
+					<div id="login_inside_div_right_pad">
+							<div id="login_inside_div_right_pad_inside">
+									<div id="login_inside_div_head">
+											<span>登录任务管家</span>
+									</div>
+									<div class="login_inside_div_title">
+											<span>账号：</span>
+									</div>
+									<div class="login_inside_div_input">
+											<input type="text" id="login_inside_div_input_uname">
+									</div>
+									<div class="login_inside_div_title">
+											<span>密码：</span>
+									</div>
+									<div class="login_inside_div_input">
+											<input type="password" id="login_inside_div_input_upass">
+									</div>
+									<div class="login_inside_div_input_button">
+											<input type="button" id="login_inside_div_input_submit" value="登  录">
+									</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
