@@ -38,14 +38,13 @@ public class TestConnDBServlet extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			pw.println("connect success");
-			
 			JSONObject jsonObject=new JSONObject();
 			for(int i=0;i<list.size();i++){
 				jsonObject.put(""+i, list.get(i));
 			}
-			pw.println("jsonObject:"+jsonObject.toString());
-
+			pw.println(jsonObject.toString());
+			pw.flush();
+			pw.close();
 		}
 	}
 

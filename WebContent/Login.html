@@ -11,7 +11,16 @@
 		
 		$(document).ready(function(){
 			$("#login_inside_div_input_submit").click(function(){
-				location.href = "ManagerCenter.html";
+				//location.href = "ManagerCenter.html";
+					$.ajax({ 
+	                    type: "post", 
+	                    url: "http://localhost:8080/TaskHouseKeeper/test", 
+	                    dataType: "json", 
+	                    success: function (data) { 
+	                    	var json=eval("("+data+")");
+	                    	alert("success");
+	                    }
+	            });
 			});
 		});
 		$()
