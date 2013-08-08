@@ -35,4 +35,12 @@
 	    <servlet-name>TestconnDBServlet</servlet-name>
 	    <url-pattern>/test</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	    <servlet-name>CheckUserServlet</servlet-name>
+	    <servlet-class>com.rong.servlet.CheckUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>CheckUserServlet</servlet-name>
+	    <url-pattern>/checkuser</url-pattern>
+	</servlet-mapping>
 </web-app>

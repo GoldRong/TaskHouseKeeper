@@ -5,20 +5,26 @@
 <link rel="stylesheet" type="text/css"  href="css/loginstyle.css">
 <link rel="shortcut icon" href="images/logo.ico" />
 <script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="scripts/jquery.cookie.js"></script>
+<script type="text/javascript" src="scripts/jquery.md5.js"></script>
+<script type="text/javascript" src="scripts/jquery.json-2.4.js"></script>
 <script type="text/javascript">
 		var uname;
 		var upass;
-		
+		var responseData;
 		$(document).ready(function(){
+			
 			$("#login_inside_div_input_submit").click(function(){
-				//location.href = "ManagerCenter.html";
+				uname=$("#login_inside_div_input_uname").val();
+				upass=$("#login_inside_div_input_upass").val();
+				
 					$.ajax({ 
 	                    type: "post", 
-	                    url: "http://localhost:8080/TaskHouseKeeper/test", 
-	                    dataType: "json", 
-	                    success: function (data) { 
-	                    	var json=eval("("+data+")");
-	                    	alert("success");
+	                    url: "http://localhost:8080/TaskHouseKeeper/checkuser?uname="+uname+"&upass="+upass,
+	                    success: function (data) {
+	                    	alert($.evalJSON(data).isExist);
+                    		//$.cookie("username",data);
+                    		//location.href = "ManagerCenter.html";
 	                    }
 	            });
 			});

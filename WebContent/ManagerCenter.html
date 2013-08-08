@@ -6,18 +6,26 @@
 <link rel="shortcut icon" href="images/logo.ico" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.css">
 <script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="scripts/jquery.cookie.js"></script>
 <script type="text/javascript" src="scripts/jquery-ui-1.10.3.custom.js"></script>
 <script type="text/javascript">
 	var headtime;
 	var datetime;
+	var addButton;
+	var seeButton;
+	
 	$(document).ready(function(){
 		init();
+		alert($.cookie("username"));
 	});
 	
 	function init(){
-		$("#managercenter_div_center_right_inside_pad_datepicker").datepicker();
-		$("#managercenter_div_center_right_inside_pad_add").button();
-		$("#managercenter_div_center_right_inside_pad_see").button();
+		datetime=$("#managercenter_div_center_right_inside_pad_datepicker");
+		addButton=$("#managercenter_div_center_right_inside_pad_add");
+		seeButton=$("#managercenter_div_center_right_inside_pad_see");
+		datetime.datepicker();
+		addButton.button();
+		seeButton.button();
 		headtime=$("#managercenter_div_head_time span");
 		setTime();
 	}
@@ -43,7 +51,7 @@
 									<span>任务管家</span>
 							</div>
 							<div id="managercenter_div_head_time">
-									<span>2013年8月6日  14:43</span>
+									<span></span>
 							</div>
 						</div>
 						<div id="managercenter_div_center">
