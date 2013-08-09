@@ -22,9 +22,13 @@
 	                    type: "post", 
 	                    url: "http://localhost:8080/TaskHouseKeeper/checkuser?uname="+uname+"&upass="+upass,
 	                    success: function (data) {
-	                    	alert($.evalJSON(data).isExist);
-                    		//$.cookie("username",data);
-                    		//location.href = "ManagerCenter.html";
+	                    	if($.evalJSON(data).isExist==true){
+	                    		$.cookie("username",$.evalJSON(data).uname);
+	                    		location.href = "ManagerCenter.html";
+	                    	}else{
+	                    		alert(" uname or upass is error");
+	                    	}
+                    		
 	                    }
 	            });
 			});

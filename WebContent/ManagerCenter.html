@@ -13,12 +13,19 @@
 	var datetime;
 	var addButton;
 	var seeButton;
-	
 	$(document).ready(function(){
 		init();
-		alert($.cookie("username"));
+		checkLogin();
 	});
-	
+	function checkLogin(){
+		if($.cookie("username")!=null){
+			alert("login success");
+		}else{
+			alert("login error");
+			location.href = "Login.html";
+		}
+		
+	}
 	function init(){
 		datetime=$("#managercenter_div_center_right_inside_pad_datepicker");
 		addButton=$("#managercenter_div_center_right_inside_pad_add");
