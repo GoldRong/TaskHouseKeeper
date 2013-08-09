@@ -43,4 +43,20 @@
 	    <servlet-name>CheckUserServlet</servlet-name>
 	    <url-pattern>/checkuser</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	    <servlet-name>AddData2DBServlet</servlet-name>
+	    <servlet-class>com.rong.servlet.AddData2DBServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>AddData2DBServlet</servlet-name>
+	    <url-pattern>/adddata</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	    <servlet-name>SeeUserDataServlet</servlet-name>
+	    <servlet-class>com.rong.servlet.SeeUserDataServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>SeeUserDataServlet</servlet-name>
+	    <url-pattern>/seedata</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -9,7 +9,10 @@ import java.sql.Statement;
 
 public class ConnectDBTools {
 	private static ConnectDBTools tools = new ConnectDBTools();
-
+	private ResultSet rs = null;
+	private Statement stmt = null;
+	private Connection conn = null;
+	
 	private ConnectDBTools() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -27,7 +30,7 @@ public class ConnectDBTools {
 
 	// 获取Connection对象
 	public Connection getConnection() {
-		Connection conn = null;
+		
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskhousekeeper", "root", "123456");
 			return conn;
@@ -39,7 +42,7 @@ public class ConnectDBTools {
 
 	// 获取Statement对象
 	public Statement getStatement() {
-		Statement stmt = null;
+		
 		try {
 			stmt = this.getConnection().createStatement();
 
@@ -52,12 +55,28 @@ public class ConnectDBTools {
 
 	// 对象Resultset对象
 	public ResultSet getResultSet(String sql) {
-		ResultSet rs = null;
+		
 		try {
 			rs = this.getStatement().executeQuery(sql);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return rs;
+	}
+	//关闭连接
+	public void close(){
+		try{
+				if(conn!=null){
+					conn.close();
+				}
+				if(stmt!=null){
+					stmt.close();
+				}
+				if(rs!=null){
+					rs.close();
+				}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }

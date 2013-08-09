@@ -3,56 +3,45 @@ package com.rong.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
 import com.rong.util.ConnectDBTools;
 
-public class CheckUserServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class AddData2DBServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String data=req.getParameter("data");
+		String time=req.getParameter("time");
 		String uname=req.getParameter("uname");
-		String upass=req.getParameter("upass");
-		ConnectDBTools tools=ConnectDBTools.getInstance();
-		String sql="SELECT * FROM userinfo WHERE uname='"+uname+"' AND upass='"+upass+"'" ;
 		PrintWriter pw=resp.getWriter();
-		JSONObject json=new JSONObject();
+		
+		System.out.println(data+"==="+time+"==="+uname);
+		ConnectDBTools tools=ConnectDBTools.getInstance();
+		String sql="INSERT INTO `userdata` (`uname`, `utime`, `udata`) VALUES ('"+uname+"', '"+time+"', '"+data+"')"; 
 		try{
-			ResultSet rs=tools.getResultSet(sql);
-			if(rs!=null){
-				rs.last();
-				if(rs.getRow()==1){
-					json.put("uname", uname);
-					json.put("isExist",true);
-					pw.print(json);
-				}else{
-					json.put("isExist",false);
-					pw.print(json);
-				}
+			if(tools.getStatement().executeUpdate(sql)==1){
+				pw.print("add success");
 			}else{
-				json.put("isExist",false);
-				pw.print(json);
+				pw.print("add error");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
+			pw.flush();
 			pw.close();
 			tools.close();
 		}
-	}
 
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

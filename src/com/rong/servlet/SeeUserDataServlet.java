@@ -13,41 +13,27 @@ import net.sf.json.JSONObject;
 
 import com.rong.util.ConnectDBTools;
 
-public class CheckUserServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class SeeUserDataServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String time=req.getParameter("time");
 		String uname=req.getParameter("uname");
-		String upass=req.getParameter("upass");
 		ConnectDBTools tools=ConnectDBTools.getInstance();
-		String sql="SELECT * FROM userinfo WHERE uname='"+uname+"' AND upass='"+upass+"'" ;
+		String sql="SELECT * FROM userdata WHERE uname='"+uname+"' AND utime='"+time+"'";
 		PrintWriter pw=resp.getWriter();
-		JSONObject json=new JSONObject();
 		try{
 			ResultSet rs=tools.getResultSet(sql);
-			if(rs!=null){
-				rs.last();
-				if(rs.getRow()==1){
-					json.put("uname", uname);
-					json.put("isExist",true);
-					pw.print(json);
-				}else{
-					json.put("isExist",false);
-					pw.print(json);
-				}
-			}else{
-				json.put("isExist",false);
-				pw.print(json);
+			JSONObject json=new JSONObject();
+			while(rs.next()){
+				json.put("udata", rs.getString("udata"));
 			}
+			pw.print(json);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
+			pw.flush();
 			pw.close();
 			tools.close();
 		}

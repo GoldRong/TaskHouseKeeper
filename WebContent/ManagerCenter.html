@@ -7,16 +7,20 @@
 <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.css">
 <script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="scripts/jquery.cookie.js"></script>
+<script type="text/javascript" src="scripts/jquery.json-2.4.js"></script>
 <script type="text/javascript" src="scripts/jquery-ui-1.10.3.custom.js"></script>
 <script type="text/javascript">
 	var headtime;
 	var datetime;
 	var addButton;
 	var seeButton;
+	var dataarea;
+	
 	$(document).ready(function(){
 		init();
 		checkLogin();
 	});
+	
 	function checkLogin(){
 		if($.cookie("username")!=null){
 			alert("login success");
@@ -27,22 +31,47 @@
 		
 	}
 	function init(){
+		dataarea=$("#managercenter_div_center_right_inside_pad_textarea");
 		datetime=$("#managercenter_div_center_right_inside_pad_datepicker");
 		addButton=$("#managercenter_div_center_right_inside_pad_add");
 		seeButton=$("#managercenter_div_center_right_inside_pad_see");
-		datetime.datepicker();
+		datetime.datepicker({ dateFormat: 'yy-mm-dd' });
 		addButton.button();
 		seeButton.button();
-		headtime=$("#managercenter_div_head_time span");
-		setTime();
-	}
-	function setTime(){
-		headtime.text(formatDateTime());
-		setInterval("setTime()",1000*60);
-	}
-	function formatDateTime(){
-		datetime=new Date();
-		return datetime.getFullYear()+"年"+(datetime.getMonth()+1)+"月"+datetime.getDate()+"日"+"	"+datetime.getHours()+":"+datetime.getMinutes();
+		
+			//添加
+			addButton.click(function(){
+				
+				var data=$.trim(dataarea.val());
+				var time=$.trim(datetime.val());
+				if(data==""||time==""){
+					alert("请完善信息");
+				}else{
+					$.ajax({ 
+	                    type: "post", 
+	                    url: "http://localhost:8080/TaskHouseKeeper/adddata?data="+data+"&time="+time+"&uname="+$.cookie("username"),
+	                    success: function (data) {
+	                    	alert(data);
+	                    }
+	            });		
+				}
+		});
+			//查看
+			seeButton.click(function(){
+				
+				var time=$.trim(datetime.val());
+				if(time==""){
+					alert("请选择日期");
+				}else{
+					$.ajax({ 
+	                    type: "post", 
+	                    url: "http://localhost:8080/TaskHouseKeeper/seedata?time="+time+"&uname="+$.cookie("username"),
+	                    success: function (data) {
+	                    	dataarea.val($.evalJSON(data).udata);
+	                    }
+	           	 	});
+				}
+			});
 	}
 </script>
 <title>任务管家</title>
@@ -85,7 +114,7 @@
 														</div>
 														<div id="managercenter_div_center_right_inside_pad_select">
 															<span>选择日期添加或查看任务：</span>
-															<input type="text" id="managercenter_div_center_right_inside_pad_datepicker">
+															<input type="text" id="managercenter_div_center_right_inside_pad_datepicker" readonly="readonly">
 														</div>
 														<div id="managercenter_div_center_right_inside_pad_handle">
 															<input type="button" value="添加" id="managercenter_div_center_right_inside_pad_add" class="managercenter_div_center_right_inside_pad_button">
